@@ -16,6 +16,7 @@
 			<td>Username</td>
 			<td>Email</td>
 			<td>Password</td>
+			<td>Image</td>
 			<td></td>
 		</tr>
 		
@@ -25,7 +26,8 @@
 				<td>${user.username}</td>
 				<td>${user.email}</td>
 				<td>${user.password}</td>
-				<td><a href="">Edit</a> | <a  href="DeleteServlet?userKey=${user.userKey}">Delete</a></td>
+				<td><img width="200px" height="200px" src="https://storage.cloud.google.com/niitgaebucket/${user.userKey}.jpg"/></td>
+				<td><a href="EditServlet?userKey=${user.userKey}">Edit</a> | <a  href="DeleteServlet?userKey=${user.userKey}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

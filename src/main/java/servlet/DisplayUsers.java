@@ -17,6 +17,11 @@ import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.KeyFactory;
 import com.google.cloud.datastore.Query;
 import com.google.cloud.datastore.QueryResults;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 
 @WebServlet("/DisplayUsers")
 public class DisplayUsers extends HttpServlet
@@ -37,6 +42,10 @@ public class DisplayUsers extends HttpServlet
 			Query<Entity> query = Query.newEntityQueryBuilder().setKind("users").build();
 			QueryResults<Entity> tasks = datastore.run(query);
 			
+			//Storage storage = StorageOptions.newBuilder().setProjectId("engine-niit").build().getService();
+
+
+		    
 			while(tasks.hasNext())
 			{
 				Entity entity=tasks.next();
@@ -46,6 +55,9 @@ public class DisplayUsers extends HttpServlet
 				u.setUsername(entity.getString("username"));
 				u.setEmail(entity.getString("email"));
 				u.setPassword(entity.getString("password"));
+				//u.setImageLink(entity.getString("imageurl"));
+				
+				//Blob blob = storage.get(BlobId.of("niitgaebucket", u.getUserKey()+".jpg"));
 				
 				users.add(u);
 			}

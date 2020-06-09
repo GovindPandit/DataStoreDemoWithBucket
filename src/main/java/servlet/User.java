@@ -8,8 +8,14 @@ public class User implements Serializable
 	private String username;
 	private String email;
 	private String password;
+	private String imageLink;
 	
-	
+	public String getImageLink() {
+		return imageLink;
+	}
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 	public String getUsername() {
 		return username;
 	}
