@@ -20,6 +20,10 @@
 				<td><input type="text" name="email" value="${user.email}"/></td>
 			</tr>
 			<tr>
+				<td>Age</td>
+				<td><input type="text" name="age" value="${user.age}"/></td>
+			</tr>
+			<tr>
 				<td>Password</td>
 				<td><input type="password" name="password" value="${user.password}"/></td>
 			</tr>

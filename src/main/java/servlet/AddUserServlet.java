@@ -21,6 +21,7 @@ import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.KeyFactory;
+import com.google.cloud.datastore.Transaction;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
@@ -37,6 +38,8 @@ public class AddUserServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
+		Transaction tx=null;
+		
 		try
 		{
 			Part part=req.getPart("image");
@@ -46,6 +49,8 @@ public class AddUserServlet extends HttpServlet
 		    
 			datastore=DatastoreOptions.getDefaultInstance().getService();
 			factory=datastore.newKeyFactory().setKind("users");
+			
+			tx=datastore.newTransaction();
 			
 			Key taskKey=datastore.add(FullEntity.newBuilder(factory.newKey()).build()).getKey();
 			Storage storage = StorageOptions.newBuilder().setProjectId("engine-niit").build().getService();
@@ -57,19 +62,20 @@ public class AddUserServlet extends HttpServlet
 					.set("username",req.getParameter("username"))
 					.set("email",req.getParameter("email"))
 					.set("password",req.getParameter("password"))
+					.set("age",Long.parseLong(req.getParameter("age")))
 					.build();
 			
 			
 			datastore.put(entity);
 			
-			
-	    
+			tx.commit();
 		    resp.sendRedirect("DisplayUsers");
 		}
 		catch(Exception e)
 		{
 			PrintWriter out=resp.getWriter();
 			out.println(e+"");
+			tx.rollback();
 		}
 		
 		

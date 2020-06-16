@@ -39,6 +39,7 @@ public class EditServlet extends HttpServlet
 			u.setUsername(entity.getString("username"));
 			u.setEmail(entity.getString("email"));
 			u.setPassword(entity.getString("password"));
+			u.setAge(entity.getLong("age"));
 			
 			HttpSession hs=req.getSession();
 			hs.setAttribute("user", u);

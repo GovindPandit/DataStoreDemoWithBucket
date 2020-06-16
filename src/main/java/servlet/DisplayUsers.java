@@ -54,6 +54,7 @@ public class DisplayUsers extends HttpServlet
 				u.setUserKey(entity.getKey().getId());
 				u.setUsername(entity.getString("username"));
 				u.setEmail(entity.getString("email"));
+				u.setAge(entity.getLong("age"));
 				u.setPassword(entity.getString("password"));
 				//u.setImageLink(entity.getString("imageurl"));
 				

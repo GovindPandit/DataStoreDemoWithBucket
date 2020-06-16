@@ -20,6 +20,10 @@
 				<td><input type="text" name="email"/></td>
 			</tr>
 			<tr>
+				<td>Age</td>
+				<td><input type="text" name="age"/></td>
+			</tr>
+			<tr>
 				<td>Image</td>
 				<td><input type="file" accept="image/*" name="image"/></td>
 			</tr>
